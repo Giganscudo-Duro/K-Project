@@ -1,0 +1,17 @@
+# 以下の変数に認証情報を入力し、「config.py」 として新規にファイルを保存する
+CONSUMER_KEY        = "<API key>"
+CONSUMER_SECRET     = "<API secret key>"
+ACCESS_TOKEN        = "<Access token>"
+ACCESS_TOKEN_SECRET = "<Access token secret>"
+
+# 緯度・経度
+# GEO_LAT  = ""         # 緯度、設定したくなければ "" でおｋ
+# GEO_LONG = ""         # 経度、設定したくなければ "" でおｋ
+
+# 滋賀県
+# GEO_LAT  = "34.995272"
+# GEO_LONG = "135.895358"
+
+# 岩手県
+GEO_LAT  = "39.43684938473831"
+GEO_LONG = "141.98105849864248"

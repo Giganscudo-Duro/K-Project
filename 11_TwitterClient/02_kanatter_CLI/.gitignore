@@ -1,0 +1,5 @@
+# Twitter の Token 情報などを記載することになるので、対象から除外
+config.py
+
+# Python のコンパイルデータはいらんよね 
+__pycache__
