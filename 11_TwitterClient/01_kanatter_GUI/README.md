@@ -2,9 +2,12 @@
 
 1. 利用に必要なパッケージのインストール  
     Tk自体がグラフィカルなUIを作成するツールキットらしく、それらをインストールするため以下のコマンドを実行。
+    `python3-tkinter`：PythonでGUIを操作する場合に必要となるライブラリ、TkのInterface
+    `tk-devel`：tkinter を使用するために Python 環境を再構築するパッケージ
     ```sh
-    $ sudo yum install python3-tkinter  <-- PythonでGUIを操作する場合に必要となるライブラリ、TkのInterface
-    $ sudo yum install tk-devel  <--------- tkinter を使用するために Python 環境を再構築するパッケージ
+    sudo yum install -y \
+      python3-tkinter \
+      tk-devel
     ```
 
 
