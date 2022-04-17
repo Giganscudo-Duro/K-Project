@@ -6,7 +6,6 @@ from subcommand import post
 from subcommand import timeline
 from subcommand import delete
 
-
 # サブコマンドの実際の処理を記述するコールバック関数
 def command_post(twitter, args):
     post.postTweet(twitter, args)
@@ -35,23 +34,28 @@ parser_add.add_argument("--lat", default=config.GEO_LAT, help="param of lat")
 parser_add.add_argument("--long", default=config.GEO_LONG, help="param of long")
 parser_add.add_argument("--sensitive", default="false", help="bool of sensitive")
 parser_add.add_argument("--mediaids", default=None, help="id of media")
+parser_add.add_argument("--media", default=None, help="media")   # 仮オプション
+parser_add.add_argument("-V", "--verbose", required=False, action='store_true', help="output of debug log")   # 仮オプション
 parser_add.set_defaults(handler=command_post)
 
 # hometimeline コマンドの parser を作成
 parser_add = subparsers.add_parser("hometimeline", help="see `hometimeline -h`")
 parser_add.add_argument("--count", default="10", help="num of tweet")
+parser_add.add_argument("-V", "--verbose", required=False, action='store_true', help="output of debug log")   # 仮オプション
 parser_add.set_defaults(handler=command_hometimeline)
 
 # usertimeline コマンドの parser を作成
 parser_add = subparsers.add_parser("usertimeline", help="see `usertimeline -h`")
 parser_add.add_argument("username", type=str, help="user name")
 parser_add.add_argument("--count", default="20", help="num of tweet(1~200)")
+parser_add.add_argument("-V", "--verbose", required=False, action='store_true', help="output of debug log")   # 仮オプション
 parser_add.set_defaults(handler=command_usertimeline)
 
 # delete コマンドの parser を作成
 parser_add = subparsers.add_parser("delete", help="see `delete -h`")
 parser_add.add_argument("--id", type=str, help="Trget tweetID")
 parser_add.add_argument("--all", action='store_true', help="flag of AllDelete")
+parser_add.add_argument("-V", "--verbose", required=False, action='store_true', help="output of debug log")   # 仮オプション
 parser_add.set_defaults(handler=command_delete)
 
 # help コマンドの parser を作成
@@ -71,6 +75,7 @@ if __name__ == "__main__":
         AT      = config.ACCESS_TOKEN
         ATS     = config.ACCESS_TOKEN_SECRET
         twitter = OAuth1Session(CK, CS, AT, ATS) #認証処理
+        print(twitter)
         args.handler(twitter, args)
     else:
         # 未知のサブコマンドの場合はヘルプを表示

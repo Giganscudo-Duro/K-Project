@@ -1,11 +1,14 @@
 # 利用方法
 
 1. 利用に必要なパッケージのインストール  
+    `pip`：Pythonのパッケージ管理  
+    `requests`：Python で Rest API 操作を簡単に行うためのライブラリ  
+    `requests-oauthlib`：Python で OAuth 認証を簡単に行うためのライブラリ  
     以下のコマンドを実行。
     ```sh
-    $ sudo yum install pip
-    $ pip install requests  ←---------- Python で Rest API 操作を簡単に行うためのライブラリ
-    $ pip install requests-oauthlib  ←- Python で OAuth 認証を簡単に行うためのライブラリ
+    sudo yum install -y pip
+    pip install requests
+    pip install requests-oauthlib
     ```
 
 2. 開発者用のトークンを取得  
@@ -18,7 +21,7 @@
     - Access token
     - Access token secret
 
-3. config.py ファイルを作成する。  
+3. config.py ファイルを作成  
     以下の内容でファイルを作成する。
     ```python
     CONSUMER_KEY = "<API key>"
@@ -44,12 +47,6 @@ $ kanatter COMMAND <OPTION>
 英語で色々と目的やら何やらを入力する必要がある。  
 今はこんなサイトも用意されてるみたい（便利でいいね）  
 [https://www.itti.jp/web-direction/how-to-apply-for-twitter-api/](https://www.itti.jp/web-direction/how-to-apply-for-twitter-api/)
-
-
-
-
-
-
 
 
 # 参考サイト
