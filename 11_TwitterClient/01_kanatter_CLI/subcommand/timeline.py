@@ -4,9 +4,11 @@ from callAPI import post_status
 from callAPI import get_status
 from callAPI import post_user
 from callAPI import get_user
+import common
 
 
 def user_timeline(twitter, args):
+    common.debuglog(args, "DEBUG: Start user_timeline")
     params = {
         "user_id"     : None,
         "screen_name" : args.username
@@ -19,7 +21,7 @@ def user_timeline(twitter, args):
     }
     res = get_status.user_timeline(twitter, params = params)
     if res.status_code == 200:
-        print("DEBUG: user_timeline Success.")
+        common.debuglog(args, "DEBUG: user_timeline Success.")
         timelines = json.loads(res.text)
         print('*******************************************')
         for line in timelines: #タイムラインリストをループ処理
@@ -31,8 +33,10 @@ def user_timeline(twitter, args):
     else:
         print("DEBUG: user_timeline Failed. : %d"% res.status_code)
 
+    common.debuglog(args, "DEBUG: Finish user_timeline.")
 
 def home_timeline(twitter, args):
+    common.debuglog(args, "DEBUG: Start home_timeline")
     params = {
         "count" : args.count
     }
@@ -49,3 +53,4 @@ def home_timeline(twitter, args):
             print('*******************************************')
     else:
         print("DEBUG: home_timeline Failed. : %d"% res.status_code)
+    common.debuglog(args, "DEBUG: Finish home_timeline")

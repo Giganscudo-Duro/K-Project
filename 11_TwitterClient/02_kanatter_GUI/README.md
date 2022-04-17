@@ -23,6 +23,7 @@
 
 
 
+https://cercopes-z.com/Python/stdlib-tkinter-widget-panedwindow-py.html
 
 
 # 参考サイト

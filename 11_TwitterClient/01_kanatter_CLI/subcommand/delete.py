@@ -6,10 +6,12 @@ from callAPI import get_status
 from callAPI import post_user
 from callAPI import get_user
 from callAPI import get_account
+import common
 
-def delete(twitter, args):
-    if args.all :
+def delete(twitter, args) :
+    if args.all is True :
         # 全部削除する場合
+        common.debuglog(args, "DEBUG: 全てのつぶやきを削除")
         params = {
             "include_entities" : "false",
             "skip_status"      : "true",
