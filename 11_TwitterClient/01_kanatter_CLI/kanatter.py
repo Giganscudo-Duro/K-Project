@@ -75,7 +75,6 @@ if __name__ == "__main__":
         AT      = config.ACCESS_TOKEN
         ATS     = config.ACCESS_TOKEN_SECRET
         twitter = OAuth1Session(CK, CS, AT, ATS) #認証処理
-        print(twitter)
         args.handler(twitter, args)
     else:
         # 未知のサブコマンドの場合はヘルプを表示

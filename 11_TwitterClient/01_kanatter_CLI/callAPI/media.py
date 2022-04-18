@@ -5,9 +5,6 @@
 
 
 
-import requests
-
-
 def upload_init(twitter, params):
     url = "https://upload.twitter.com/1.1/media/upload.json"
     res = twitter.post(url, params = params)
@@ -31,10 +28,4 @@ def upload_finalize(twitter, params):
     res = twitter.post(url, params = params)
     return res
 
-
-def destroy(twitter, params):
-    # 自分で削除したいIDを含んだURLを作成しなければならないので注意。
-    url = "https://api.twitter.com/1.1/statuses/destroy/"+params['id']+".json"
-    res = twitter.post(url, params = params)
-    return res
 
