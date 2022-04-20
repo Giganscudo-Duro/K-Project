@@ -208,6 +208,13 @@ set statusline+=\
 " ファイルのエンコード
 set statusline+=[ENC=%{&fileencoding}]
 
+
+" カーソルのある場所までの文字数をカウント
+" wordcount.vim を導入済みの場合のみ有効にすること
+" set statusline+=[Count=%{WordCount()}]
+" set updatetime=500
+
+
 " 現在行数/全行数
 set statusline+=[%l/%L]
 
@@ -224,5 +231,6 @@ set laststatus=2
 map <C-K>init :enew!<CR>
 
 " }}}
+
 
 
