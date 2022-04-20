@@ -255,65 +255,65 @@ map <C-K>print :call KanaYutaponPrint()<CR>
 
 "【ヤンクしている文字列をテキストを読み上げる】
 "{{{
-function! KanaReadByVoiceloid_Ver1()
+" function! KanaReadByVoiceloid_Ver1()
+"     " echo "Call KanaReadByVoiceloid"
+"     set shell=cmd.exe
+"
+"     " 文字列を Voiceroid に中継するアプリ
+"     let s:application = '"D:\\ProgramFiles\\tamiyasu_talk\\vrx.exe"'
+"
+"     " ヤンクしている内容を格納
+"     let s:base_string = @@
+"
+"     " 改行コードを\nに置き換える
+"     " let strings2 = substitute(strings1, "", "\n", "g")
+"     " echo "strings2 = ". strings2
+"
+"     " 文字列をシェルコマンドとして使えるようエスケープ処理
+"     let s:escaped_string = shellescape(s:base_string)
+"
+"     " 実行アプリのパスと、読み上げさせたい文字列を連結
+"     call vimproc#popen2(s:application . " " . s:escaped_string)
+"
+"     set shell=vimrun.exe
+" endfunction
+" }}}
+" ==== 上記関数の呼び出し
+" map <C-K>read :call KanaReadByVoiceloid_Ver1()<CR>
+
+
+"【ビジュアルモードで選択した範囲のテキストを読み上げる】
+"{{{
+" なぜか、vrx.exe に渡される文字列の順序がおかしくなる場合がある。
+" vimproc#popen2 での非同期処理の呼び出し順序がおかしくなってる？
+function! KanaReadByVoiceloid_Ver2()
     " echo "Call KanaReadByVoiceloid"
     set shell=cmd.exe
 
     " 文字列を Voiceroid に中継するアプリ
     let s:application = '"C:\\Program Files\\tamiyasu_talk\\vrx.exe"'
 
-    " ヤンクしている内容を格納
+    " ビジュアルモードでの選択範囲をヤンク
+    y
+    " ヤンクした内容を格納
     let s:base_string = @@
-
+    " echo s:base_string
     " 改行コードを\nに置き換える
     " let strings2 = substitute(strings1, "", "\n", "g")
     " echo "strings2 = ". strings2
 
     " 文字列をシェルコマンドとして使えるようエスケープ処理
-    let s:escaped_string = shellescape(s:base_string, 1)
+    let s:escaped_string = shellescape(s:base_string)
+    " echo s:escaped_string
 
     " 実行アプリのパスと、読み上げさせたい文字列を連結
-    call vimproc#popen2(s:application . " " . s:escaped_string)
+    call vimproc#popen3(s:application . " " . s:escaped_string)
 
     set shell=vimrun.exe
 endfunction
-" }}}
-" ==== 上記関数の呼び出し
-map <C-K>read :call KanaReadByVoiceloid_Ver1()<CR>
-
-
-"【ビジュアルモードで選択した範囲のテキストを読み上げる】
-"{{{
-" なぜか、vrx.exe に渡される文字列の順序がおかしくなる
-" function! KanaReadByVoiceloid_Ver2()
-"     " echo "Call KanaReadByVoiceloid"
-"     set shell=cmd.exe
-" 
-"     " 文字列を Voiceroid に中継するアプリ
-"     let s:application = '"C:\\Program Files\\tamiyasu_talk\\vrx.exe"'
-" 
-"     " ビジュアルモードでの選択範囲をヤンク
-"     y
-"     " ヤンクした内容を格納
-"     let s:base_string = @@
-"     echo s:base_string
-"     " 改行コードを\nに置き換える
-"     " let strings2 = substitute(strings1, "", "\n", "g")
-"     " echo "strings2 = ". strings2
-" 
-"     " 文字列をシェルコマンドとして使えるようエスケープ処理
-"     echo "-----------"
-"     let s:escaped_string = shellescape(s:base_string, 1)
-"     echo s:escaped_string
-" 
-"     " 実行アプリのパスと、読み上げさせたい文字列を連結
-"     call vimproc#popen3(s:application . " " . s:escaped_string)
-" 
-"     set shell=vimrun.exe
-" endfunction
 " " }}}
 " " ==== 上記関数の呼び出し
-" map <C-K>read :call KanaReadByVoiceloid_Ver2()<CR>
+map <C-K>read :call KanaReadByVoiceloid_Ver2()<CR>
 
 
 
