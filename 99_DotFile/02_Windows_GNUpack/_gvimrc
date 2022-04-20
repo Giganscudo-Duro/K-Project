@@ -291,7 +291,7 @@ function! KanaReadByVoiceloid_Ver2()
     set shell=cmd.exe
 
     " 文字列を Voiceroid に中継するアプリ
-    let s:application = '"C:\\Program Files\\tamiyasu_talk\\vrx.exe"'
+    let s:application = '"D:\\ProgramFiles\\tamiyasu_talk\\vrx.exe"'
 
     " ビジュアルモードでの選択範囲をヤンク
     y
