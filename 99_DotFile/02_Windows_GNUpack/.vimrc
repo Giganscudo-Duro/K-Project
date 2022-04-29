@@ -108,6 +108,16 @@ set showmatch
 " 通常vimでは 以下のカラースキームを利用する
 colorscheme industry
 
+" 要プラグイン
+" {{{
+" インデント可視化プラグインを有効に
+" let g:indentLine_color_term =239
+" let g:indentLine_color_gui = '#708090'
+" " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" let g:indentLine_char = '¦'
+
+" }}}
+
 " }}}
 
 
