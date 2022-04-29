@@ -4,8 +4,8 @@
 - [Windows用Xサーバ での日本語入力設定 ]( https://pcvogel.sarakura.net/2016/07/10/31610 )
 - [【Xming】インストールと使い方 ]( https://www.teamxeppet.com/xming1/ )
 - [Xming + Teraterm で画面転送]( http://www.mikitechnica.com/11-xming-teraterm.html )
-
-
+- [Windowsマシンから Linuxの GUIをリモートで使う]( https://www.ilovex.co.jp/blog/system/distributionsystem/windows-linux-gui.html )
+- [【今更感】XmingとPuttyでWindowsに最高の開発環境を作る]( https://alfa.hatenablog.jp/entry/2016/05/19/101456 )
 
 
 # 事前準備
@@ -52,7 +52,40 @@
     # export DISPLAY=<接続元のIPアドレス>:<Display number>.<Screen number>
     export DISPLAY=192.168.180.128:0.0
     ```
-4. gVim なりなんなりのGUIアプリケーションを起動
+4. 全角半角キーを効かせる場合の設定
+	- パターン１）こっちだとうまくいった  
+		fedora 接続時だけどね
+	    ```sh
+	    export LANG=ja_JP.UTF-8
+	    export DefaultIMModule=ibus
+	    export XMODIFIERS="@im=ibus"
+	    export GTK_IM_MODULE=ibus
+	    export QT_IM_MODULE=ibus
+	    export IBUS_ENABLE_SYNC_MODE=1
+	    ibus-daemon -d -x
+	    ```
+	- パターン２）こっちだとうまくいかなかった  
+		こっちだと `xset` コマンドが必要なので、`xset` パッケージのインストールが必要。
+	    ```sh
+	    export GTK_IM_MODULE=ibus
+	    export XMODIFIERS=@im=ibus
+	    export QT_IM_MODULE=ibus
+	    export NO_AT_BRIDGE=1
+	    xset -r 49
+	    ibus-daemon -d -x
+	    ```
+5. gVim なりなんなりのGUIアプリケーションを起動
+
+
+
+
+
+
+
+
+
+
+
 
 
 
