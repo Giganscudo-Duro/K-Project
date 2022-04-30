@@ -66,7 +66,7 @@ augroup END
 " E28: そのような名のハイライトグループはありません: IdeographicSpace
 " 続けるにはENTERを押すかコマンドを入力してください
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-colorscheme blue
+colorscheme darkblue
 
 
 
