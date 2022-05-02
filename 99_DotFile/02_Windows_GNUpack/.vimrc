@@ -1,3 +1,4 @@
+
 " [基本設定] ===========================================================
 " {{{
 
@@ -194,6 +195,7 @@ set showtabline=2
 " ファイル名表示
 set statusline=%t
 
+
 " 変更チェック表示
 set statusline+=%m
 
@@ -217,6 +219,11 @@ set statusline+=\
 
 " ファイルのエンコード
 set statusline+=[ENC=%{&fileencoding}]
+
+" カーソルのある場所までの文字数をカウント
+" wordcount.vim を導入済みの場合のみ有効にすること
+" set statusline+=[Count=%{WordCount()}]
+" set updatetime=500
 
 " 現在行数/全行数
 set statusline+=[%l/%L]

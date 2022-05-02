@@ -115,6 +115,50 @@ set guioptions-=e
 "}}}
 
 
+" [gVim用 ステータスライン] ===========================================
+"{{{
+
+" ファイル名表示
+set statusline=%t
+
+" 変更チェック表示
+set statusline+=%m
+
+" 読み込み専用かどうかを表示
+set statusline+=%r
+
+" ヘルプページならば[HELP]と表示
+set statusline+=%h
+
+" プレビューウィンドウならば[Preview]と表示
+set statusline+=%w
+
+" これ以降は右詰
+set statusline+=%=
+
+" 意味なし
+set statusline+=
+
+" 半角スペース
+set statusline+=\ 
+
+" ファイルのエンコード
+set statusline+=[ENC=%{&fileencoding}]
+
+" " カーソルのある場所までの文字数をカウント
+" " wordcount.vim を導入済みの場合のみ有効にすること
+" set statusline+=[Count=%{WordCount()}]
+" set updatetime=500
+
+" 現在行数/全行数
+set statusline+=[%l/%L]
+
+" ステータスラインを常に表示（０：表示しない、１：2つ以上ウィンドウがある時だけ表示）
+set laststatus=2
+
+"}}}
+
+
 " [キーマッピング]=====================================================
 "{{{
 
@@ -266,7 +310,8 @@ map <C-K>print :call KanaYutaponPrint()<CR>
 "     let s:base_string = @@
 "
 "     " 改行コードを\nに置き換える
-"     " let strings2 = substitute(strings1, "", "\n", "g")
+"     " let strings2 = substitute(strings1, "
+", "\n", "g")
 "     " echo "strings2 = ". strings2
 "
 "     " 文字列をシェルコマンドとして使えるようエスケープ処理
@@ -299,7 +344,8 @@ function! KanaReadByVoiceloid_Ver2()
     let s:base_string = @@
     " echo s:base_string
     " 改行コードを\nに置き換える
-    " let strings2 = substitute(strings1, "", "\n", "g")
+    " let strings2 = substitute(strings1, "
+", "\n", "g")
     " echo "strings2 = ". strings2
 
     " 文字列をシェルコマンドとして使えるようエスケープ処理
@@ -314,8 +360,6 @@ endfunction
 " " }}}
 " " ==== 上記関数の呼び出し
 map <C-K>read :call KanaReadByVoiceloid_Ver2()<CR>
-
-
 
 
 " }}}
