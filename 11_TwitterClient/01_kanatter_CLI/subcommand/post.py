@@ -94,10 +94,11 @@ def postTweet(twitter, args) :
 
     if args.media is None:
         common.debuglog(args, "DEBUG: メディアの添付がない")
+        mediaid = None
     else :
         common.debuglog(args, "DEBUG: メディアの添付がある")
         mediaid = getMediaID(twitter, args)
-    common.debuglog(args, "DEBUG: mediaid = " + str(mediaid))
+        common.debuglog(args, "DEBUG: mediaid = " + str(mediaid))
 
     if args.replyid is None :
         common.debuglog(args, "DEBUG: 通常のつぶやき")

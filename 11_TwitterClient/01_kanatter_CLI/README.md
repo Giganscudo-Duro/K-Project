@@ -9,6 +9,7 @@
     sudo yum install -y pip
     pip install requests
     pip install requests-oauthlib
+    pip install python-magic
     ```
 
 2. 開発者用のトークンを取得  
