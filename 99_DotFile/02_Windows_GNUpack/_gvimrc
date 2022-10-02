@@ -115,6 +115,50 @@ set guioptions-=e
 "}}}
 
 
+" [gVim用 ステータスライン] ===========================================
+"{{{
+
+" ファイル名表示
+set statusline=%t
+
+" 変更チェック表示
+set statusline+=%m
+
+" 読み込み専用かどうかを表示
+set statusline+=%r
+
+" ヘルプページならば[HELP]と表示
+set statusline+=%h
+
+" プレビューウィンドウならば[Preview]と表示
+set statusline+=%w
+
+" これ以降は右詰
+set statusline+=%=
+
+" 意味なし
+set statusline+=
+
+" 半角スペース
+set statusline+=\ 
+
+" ファイルのエンコード
+set statusline+=[ENC=%{&fileencoding}]
+
+" " カーソルのある場所までの文字数をカウント
+" " wordcount.vim を導入済みの場合のみ有効にすること
+" set statusline+=[Count=%{WordCount()}]
+" set updatetime=500
+
+" 現在行数/全行数
+set statusline+=[%l/%L]
+
+" ステータスラインを常に表示（０：表示しない、１：2つ以上ウィンドウがある時だけ表示）
+set laststatus=2
+
+"}}}
+
+
 " [キーマッピング]=====================================================
 "{{{
 
@@ -145,6 +189,8 @@ map <C-K>font :set guifont=*<CR>
 function! KanaBrowserFF()
     echo "Call KanaBrowserFF"
     set shell=cmd.exe
+
+    " 利用するブラウザのパスを指定。'"PATH"'であること。「\」は「\\」でエスケープすること
     let s:browser = '"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"'
     " URLパターン(^\を区切りとして追加)
     "   通常のURL     https\=:\/\/[^ >,;:]*   http:// もしくは https:// で始ま
@@ -176,7 +222,7 @@ function! KanaBrowserIE()
     " 外部コマンド実行時のシェルを強制的に変更する。
     set shell=cmd.exe
     " 利用するブラウザのパスを '"XXXX"' という形式で指定する
-    let s:browser = '"C:\Program Files (x86)\Internet Explorer\iexplore.exe"'
+    let s:browser = '"C:\\Program Files (x86)\\Internet Explorer\\iexplore.exe"'
     " カーソルラインの文字列から取得する URLパターンを指定する。(複数指定する場合は ^\ で区切って指定する)
     "   通常のURL     https\=:\/\/[^ >,;:]*   http:// もしくは https:// で始ま
     "   ニコニコ動画  sm[0-9]\+               sm で始まり、半角数字が１回以上繰り返される
@@ -251,4 +297,72 @@ endfunction
 map <C-K>print :call KanaYutaponPrint()<CR>
 
 
+"【ヤンクしている文字列をテキストを読み上げる】
+"{{{
+" function! KanaReadByVoiceloid_Ver1()
+"     " echo "Call KanaReadByVoiceloid"
+"     set shell=cmd.exe
+"
+"     " 文字列を Voiceroid に中継するアプリ
+"     let s:application = '"D:\\ProgramFiles\\tamiyasu_talk\\vrx.exe"'
+"
+"     " ヤンクしている内容を格納
+"     let s:base_string = @@
+"
+"     " 改行コードを\nに置き換える
+"     " let strings2 = substitute(strings1, "
+", "\n", "g")
+"     " echo "strings2 = ". strings2
+"
+"     " 文字列をシェルコマンドとして使えるようエスケープ処理
+"     let s:escaped_string = shellescape(s:base_string)
+"
+"     " 実行アプリのパスと、読み上げさせたい文字列を連結
+"     call vimproc#popen2(s:application . " " . s:escaped_string)
+"
+"     set shell=vimrun.exe
+" endfunction
 " }}}
+" ==== 上記関数の呼び出し
+" map <C-K>read :call KanaReadByVoiceloid_Ver1()<CR>
+
+
+"【ビジュアルモードで選択した範囲のテキストを読み上げる】
+"{{{
+" なぜか、vrx.exe に渡される文字列の順序がおかしくなる場合がある。
+" vimproc#popen2 での非同期処理の呼び出し順序がおかしくなってる？
+function! KanaReadByVoiceloid_Ver2()
+    " echo "Call KanaReadByVoiceloid"
+    set shell=cmd.exe
+
+    " 文字列を Voiceroid に中継するアプリ
+    let s:application = '"D:\\ProgramFiles\\tamiyasu_talk\\vrx.exe"'
+
+    " ビジュアルモードでの選択範囲をヤンク
+    y
+    " ヤンクした内容を格納
+    let s:base_string = @@
+    " echo s:base_string
+    " 改行コードを\nに置き換える
+    " let strings2 = substitute(strings1, "
+", "\n", "g")
+    " echo "strings2 = ". strings2
+
+    " 文字列をシェルコマンドとして使えるようエスケープ処理
+    let s:escaped_string = shellescape(s:base_string)
+    " echo s:escaped_string
+
+    " 実行アプリのパスと、読み上げさせたい文字列を連結
+    call vimproc#popen3(s:application . " " . s:escaped_string)
+
+    set shell=vimrun.exe
+endfunction
+" " }}}
+" " ==== 上記関数の呼び出し
+map <C-K>read :call KanaReadByVoiceloid_Ver2()<CR>
+
+
+" }}}
+
+
+

@@ -5,9 +5,9 @@
 
 # ドットファイルの取得
 ```sh
-curl https://raw.githubusercontent.com/Giganscudo-Duro/K-project/develop/99_DotFile/00_Linux/.vimrc -o ~/.vimrc
-curl https://raw.githubusercontent.com/Giganscudo-Duro/K-project/develop/99_DotFile/00_Linux/.gvimrc -o ~/.gvimrc
-curl https://raw.githubusercontent.com/Giganscudo-Duro/K-project/develop/99_DotFile/00_Linux/.screenrc -o ~/.screenrc
+curl https://raw.githubusercontent.com/Giganscudo-Duro/K-project/develop/99_DotFile/01_Linux/.vimrc -o ~/.vimrc
+curl https://raw.githubusercontent.com/Giganscudo-Duro/K-project/develop/99_DotFile/01_Linux/.gvimrc -o ~/.gvimrc
+curl https://raw.githubusercontent.com/Giganscudo-Duro/K-project/develop/99_DotFile/01_Linux/.screenrc -o ~/.screenrc
 ```
 
 
