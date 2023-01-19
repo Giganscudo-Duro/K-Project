@@ -27,7 +27,7 @@
     dnf module list nodejs
     
     # Node.js 16 をインストールする場合
-    dnf module install nodejs:16
+    sudo dnf module install nodejs:16
     
     # Node.js 16 が[e]nabled, [i]nstalled 状態になったことを確認
     dnf module list nodejs
@@ -36,19 +36,22 @@
     node -v
     
     # 他バージョンの Node.js に切り替えたい場合は一旦リセットする
-    dnf module reset nodejs
+    sudo dnf module reset nodejs
     
     # 今度は Node.js 12 を有効にしてインストール
-    dnf module enable nodejs:12
-    dnf module install nodejs:12/default
+    # 利用可能プロファイルは common, development, minimal で、dnf mofule list nodejs 実行時に確認できる
+    sudo dnf module enable nodejs:14
+    sudo dnf module install nodejs:14/common
+
     
-    # Node.js 12 が [e]nabled 状態になった事を確認
+    # Node.js 14 が [e]nabled 状態になった事を確認
     dnf module list nodejs 
     
     # Node.js のバージョンを確認
     node -v
     ``` 
-
+後述の作成したプロジェクトの実行時に ` Error: error:0308010C:digital envelope routines::unsupported` が起きてしまう。
+コレは、node のバージョンが新しすぎることが原因のようなので、あえて14に下げた。
 
 
 # 手順１：まずは Nuxt のプロジェクトを作る
@@ -60,21 +63,71 @@ $ npx create-nuxt-app KANA-SAMPLE
 設定内容は以下の通り。
 
 
-| 項目名               | 設定内容 | 備考 |
-|----------------------|----------------------------------------------------|--|
-| Project name         | KANA-SAMPLE                                        |  |
-| Programming language | TypeScript                                         |  |
-| Package manager      | Npm                                                |  |
-| UI framework         | None                                               |  |
-| Nuxt.js modules      | Axios, Progressive Web App (PWA), Content          |  |
-| Linting tools        | ESLint, Prettier, Lint staged files, StyleLint     |  |
-| Testing framework    | None                                               |  |
-| Rendering mode       | Universal (SSR / SSG)                              |  |
-| Deployment target    | Server (Node.js hosting)                           |  |
-| Development tools    |                                                    |  |
+```sh
+[kanamaru@fedora ~]$ npx create-nuxt-app KANA-SAMPLE
+Need to install the following packages:
+  create-nuxt-app@5.0.0
+Ok to proceed? (y) y
+npm WARN deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+npm WARN deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+npm WARN deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+npm WARN deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+
+create-nuxt-app v5.0.0
+?  Generating Nuxt.js project in KANA-SAMPLE
+? Project name: KANA-SAMPLE
+? Programming language: TypeScript
+? Package manager: Npm
+? UI framework: None
+? Template engine: HTML
+? Nuxt.js modules: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+? Linting tools: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+? Testing framework: None
+? Rendering mode: Single Page App
+? Deployment target: Server (Node.js hosting)
+? Development tools: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+? What is your GitHub username?
+? Version control system: None
+Warning: name can no longer contain capital letters
+
+??  Successfully created project KANA-SAMPLE
+
+  To get started:
+
+        cd KANA-SAMPLE
+        npm run dev
+
+  To build & start for production:
+
+        cd KANA-SAMPLE
+        npm run build
+        npm run start
+
+
+  For TypeScript users.
+
+  See : https://typescript.nuxtjs.org/cookbook/components/
+npm notice
+npm notice New major version of npm available! 8.19.2 -> 9.3.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v9.3.1
+npm notice Run npm install -g npm@9.3.1 to update!
+npm notice
+``` 
 
 
 いつもの手順で動作してるかどうかを確認する。
+```sh
+cd KANA-SAMPLE
+npm run dev
+``` 
+
+
+
+
+
+
+
+
 ```sh
 $ ssh -X <UserName>@<IP-Address>
 $ firefox localhost:3000
@@ -109,5 +162,9 @@ $ firefox localhost:3000
 
 
 
+# トラブル
+
+## トラブル１
+- [「 Error: error:0308010C:digital envelope routines::unsupported 」 の対処法]( https://zenn.dev/pontagon333/articles/26c89cbc14e81f )
 
 
