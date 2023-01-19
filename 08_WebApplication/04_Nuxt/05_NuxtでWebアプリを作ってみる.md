@@ -50,32 +50,30 @@
     # Node.js のバージョンを確認
     node -v
     ``` 
+
+
 後述の作成したプロジェクトの実行時に ` Error: error:0308010C:digital envelope routines::unsupported` が起きてしまう。
-コレは、node のバージョンが新しすぎることが原因のようなので、あえて14に下げた。
+なので、node のバージョンを 16.15.1 にダウングレードしてあげる
+```sh
+sudo n stable
+sudo n 16.15.1
+sudo n
+``` 
 
 
 # 手順１：まずは Nuxt のプロジェクトを作る
 以下のコマンドを実行して、プロジェクトを作成する。  
 ```sh
-$ npx create-nuxt-app KANA-SAMPLE
+npx create-nuxt-app NUXT-SAMPLE
 ```
 
 設定内容は以下の通り。
-
-
 ```sh
-[kanamaru@fedora ~]$ npx create-nuxt-app KANA-SAMPLE
-Need to install the following packages:
-  create-nuxt-app@5.0.0
-Ok to proceed? (y) y
-npm WARN deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
-npm WARN deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
-npm WARN deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
-npm WARN deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+[kanamaru@fedora ~]$ npx create-nuxt-app NUXT-SAMPLE
 
 create-nuxt-app v5.0.0
-?  Generating Nuxt.js project in KANA-SAMPLE
-? Project name: KANA-SAMPLE
+?  Generating Nuxt.js project in NUXT-SAMPLE
+? Project name: NUXT-SAMPLE
 ? Programming language: TypeScript
 ? Package manager: Npm
 ? UI framework: None
@@ -90,16 +88,16 @@ create-nuxt-app v5.0.0
 ? Version control system: None
 Warning: name can no longer contain capital letters
 
-??  Successfully created project KANA-SAMPLE
+??  Successfully created project NUXT-SAMPLE
 
   To get started:
 
-        cd KANA-SAMPLE
+        cd NUXT-SAMPLE
         npm run dev
 
   To build & start for production:
 
-        cd KANA-SAMPLE
+        cd NUXT-SAMPLE
         npm run build
         npm run start
 
@@ -107,17 +105,12 @@ Warning: name can no longer contain capital letters
   For TypeScript users.
 
   See : https://typescript.nuxtjs.org/cookbook/components/
-npm notice
-npm notice New major version of npm available! 8.19.2 -> 9.3.1
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v9.3.1
-npm notice Run npm install -g npm@9.3.1 to update!
-npm notice
 ``` 
 
 
 いつもの手順で動作してるかどうかを確認する。
 ```sh
-cd KANA-SAMPLE
+cd NUXT-SAMPLE
 npm run dev
 ``` 
 

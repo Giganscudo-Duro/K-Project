@@ -52,7 +52,7 @@ func sse(w http.ResponseWriter, r *http.Request) {
 	t := time.NewTicker(1 * time.Second)
 	defer t.Stop()
 	go func () {
-	cmd := exec.Command("ping", "192.168.180.132")
+	cmd := exec.Command("ping", "192.168.180.131")
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		fmt.Println(err)
