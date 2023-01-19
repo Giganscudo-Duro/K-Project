@@ -28,7 +28,7 @@ sudo npm update -g npm
 - プラグインマネージャを使わない  
     `git` で直接導入しちゃう
     ```sh
-    $ git clone https://github.com/posva/vim-vue.git ~/.vim/pack/plugins/start/vim-vue
+    git clone https://github.com/posva/vim-vue.git ~/.vim/pack/plugins/start/vim-vue
     ```
 
 ## 参考
