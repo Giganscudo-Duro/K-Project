@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8" />
+<title>Server Sent Events</title>
+</head>
+<body>
+<h2>Server Sent Events</h2>
+<blockquote>
+<p>count: <span id="cnt">0</span></p>
+</blockquote>
+<script>
+    const ev = new EventSource('/event');
+    ev.addEventListener('pingmonitor', (e) => {
+      cnt.textContent = e.data;
+    });
+</script>
+<hr />
+May/19/2021 PM 17:40<br />
+</body>
+</html>
