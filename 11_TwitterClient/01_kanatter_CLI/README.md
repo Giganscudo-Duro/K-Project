@@ -67,3 +67,82 @@ $ kanatter COMMAND <OPTION>
 - [](https://qiita.com/oohira/items/308bbd33a77200a35a3d)
 - [](https://qiita.com/moroku0519/items/315cd25d3eaae3217103)
 
+
+
+# [メモ] こんなエラー出たんだけど
+
+## 1
+- エラー
+    ```sh
+    [kanamaru@fedora 01_kanatter_CLI]$ python kanatter.py post -V --media ~/513K5F8KRML._AC_.jpg '「羊たちの沈黙（原題：The Silence of the
+     Lambs）」久しぶりに観た。
+    > 女性を誘拐して皮を剝ぎ殺害する連続事件の捜査に挑むFBI訓練生クラリスのお話。
+    > 獄中のハンニバル博士とクラリスの歪な関係、当時は珍しいプロファイリングで進む捜査が面白い。
+    > 登場人物の静と動の切り替えの妙がホントに凄い。'
+    Traceback (most recent call last):
+      File "/home/kanamaru/K-Project/11_TwitterClient/01_kanatter_CLI/kanatter.py", line 4, in <module>
+        from requests_oauthlib import OAuth1Session #OAuthのライブラリの読み込み
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ModuleNotFoundError: No module named 'requests_oauthlib'
+    ``` 
+
+- 対処
+    `pip` でライブラリをアップデートした。
+    ```sh
+    [kanamaru@fedora 01_kanatter_CLI]$ pip install requests_oauthlib
+    Defaulting to user installation because normal site-packages is not writeable
+    Collecting requests_oauthlib
+      Using cached requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+    Collecting oauthlib>=3.0.0
+      Downloading oauthlib-3.2.2-py3-none-any.whl (151 kB)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 151.7/151.7 kB 8.6 MB/s eta 0:00:00
+    Requirement already satisfied: requests>=2.0.0 in /usr/lib/python3.11/site-packages (from requests_oauthlib) (2.28.1)
+    Requirement already satisfied: charset-normalizer<3,>=2 in /usr/lib/python3.11/site-packages (from requests>=2.0.0->requests_oauthlib) (2.1.0)
+    Requirement already satisfied: idna<4,>=2.5 in /usr/lib/python3.11/site-packages (from requests>=2.0.0->requests_oauthlib) (3.3)
+    Requirement already satisfied: urllib3<1.27,>=1.21.1 in /usr/lib/python3.11/site-packages (from requests>=2.0.0->requests_oauthlib) (1.26.12)
+    Installing collected packages: oauthlib, requests_oauthlib
+    Successfully installed oauthlib-3.2.2 requests_oauthlib-1.3.1
+    ```
+
+## 2
+- エラー
+    ```sh
+    [kanamaru@fedora 01_kanatter_CLI]$ python kanatter.py post -V --media ~/513K5F8KRML._AC_.jpg '「羊たちの沈黙（原題：The Silence of the Lambs）」久しぶりに観た。
+    女性を誘拐して皮を?ぎ殺害する連続事件の捜査に挑むFBI訓練生クラリスのお話。
+    獄中のハンニバル博士とクラリスの歪な関係、当時は珍しいプロファイリングで進む捜査が面白い。
+    登場人物の静と動の切り替えの妙がホントに凄い。'
+    DEBUG: Start postTweet.
+    DEBUG: メディアの添付がある
+    DEBUG: Start encodeMedia.
+    DEBUG: Start encodeMedia - init.
+    Traceback (most recent call last):
+      File "/home/kanamaru/K-Project/11_TwitterClient/01_kanatter_CLI/kanatter.py", line 80, in <module>
+        args.handler(twitter, args)
+      File "/home/kanamaru/K-Project/11_TwitterClient/01_kanatter_CLI/kanatter.py", line 11, in command_post
+        post.postTweet(twitter, args)
+      File "/home/kanamaru/K-Project/11_TwitterClient/01_kanatter_CLI/subcommand/post.py", line 104, in postTweet
+        mediaid = getMediaID(twitter, args)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/home/kanamaru/K-Project/11_TwitterClient/01_kanatter_CLI/subcommand/post.py", line 35, in getMediaID
+        mediatype = magic.from_file(filepath, mime=True)    # ファイルのメディアタイプ取得
+                    ^^^^^^^^^^^^^^^
+    AttributeError: module 'magic' has no attribute 'from_file'
+    ``` 
+
+- 対処
+    `pip` でライブラリをアップデートした。
+    ```sh
+    [kanamaru@fedora 01_kanatter_CLI]$ pip install python-magic
+    Defaulting to user installation because normal site-packages is not writeable
+    Collecting python-magic
+      Downloading python_magic-0.4.27-py2.py3-none-any.whl (13 kB)
+    Installing collected packages: python-magic
+    Successfully installed python-magic-0.4.27
+    ```
+
+
+
+
+
+
+
