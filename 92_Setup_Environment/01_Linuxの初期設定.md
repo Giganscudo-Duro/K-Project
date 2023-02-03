@@ -13,13 +13,14 @@ yum install -y \
 
 ## 仮想系のパッケージをインストール
 ```sh
-yum install -y libvirt
-yum install -y virt-manager
+yum install -y \
+  libvirt \
+  virt-manager
 ```
 
 
 ## ssh 接続に必要な設定を実施
-```
+```sh
 firewall-cmd --add-port=22/tcp --permanent
 firewall-cmd --reload
 systemctl enable sshd
@@ -33,15 +34,17 @@ systemctl start sshd
 
 ## よく使うパッケージをインストール
 ```sh
-apt install -y vim
-apt install -y gvim
-apt install -y screen
+apt install -y \
+  vim \
+  gvim \
+  screen
 ```
 
 ## ssh 接続に必要な設定を実施
-```
+```sh
 apt install -y ssh
 systemctl start ssh
+systemctl enable ssh
 ```
 
 
@@ -49,12 +52,12 @@ systemctl start ssh
 参考：https://qiita.com/iganari/items/fe4889943f22fd63692a
 
 1. とりあえずパッケージリストのアップデート  
-    ```
+    ```sh
     apt update
     ```
 
 2. HTTPS経由でrepositoryをやりとり出来るようにするためのパッケージをインストール  
-    ```
+    ```sh
     apt install -y \
       apt-transport-https \
       ca-certificates \
@@ -64,12 +67,12 @@ systemctl start ssh
 
 
 3. Dockerの公式GPG keyを追加する  
-    ```
+    ```sh
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     ```
 
 4. repository( stable ) を追加する  
-    ```
+    ```sh
     add-apt-repository \
       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
       $(lsb_release -cs) \
@@ -77,7 +80,7 @@ systemctl start ssh
     ```
 
 5. docker をインストール  
-    ```
+    ```sh
     apt install -y docker-ce
     ```
 
