@@ -27,12 +27,12 @@
 
 必要なパッケージを予め導入しておく。
 ```sh
-# apt install vim
-# apt install docker.io
-# apt install golang
-$ go get github.com/lib/pq
-$ go get github.com/jinzhu/gorm
-$ go get github.com/jinzhu/gorm/dialects/postgres
+sudo apt install vim
+sudo apt install docker.io
+sudo apt install golang
+go get github.com/lib/pq
+go get github.com/jinzhu/gorm
+go get github.com/jinzhu/gorm/dialects/postgres
 ```
 
 
@@ -215,7 +215,8 @@ func main(){
 実行してみると...
 
 ```sh
-kanamaru@vm-ubuntu18:~$ go run Create_DB.go
+go run Create_DB.go
+
 DEBUG: Start main
 DEBUG: Finish main
 ```
@@ -225,7 +226,7 @@ DEBUG: Finish main
 試しにもう一回実行してみる。
 
 ```sh
-kanamaru@vm-ubuntu18:~$ go run Create_DB.go
+go run Create_DB.go
 DEBUG: Start main
 
 (/home/kanamaru/Create_DB.go:49)
@@ -246,7 +247,7 @@ apt-get install postgresql-client
 https://www.dbonline.jp/postgresql/
 
 ```sh
-kanamaru@vm-ubuntu18:~$ psql -d kana-db -U kanamaru -h 127.0.0.1
+psql -d kana-db -U kanamaru -h 127.0.0.1
 Password for user kanamaru:
 psql (10.14 (Ubuntu 10.14-0ubuntu0.18.04.1), server 12.4 (Debian 12.4-1.pgdg100+1))
 WARNING: psql major version 10, server major version 12.
@@ -346,7 +347,7 @@ func main(){
 実行してみると
 
 ```sh
-kanamaru@vm-ubuntu18:~$ go run ./Select_DB.go
+go run ./Select_DB.go
 DEBUG: Start main
 1
 かなまる
