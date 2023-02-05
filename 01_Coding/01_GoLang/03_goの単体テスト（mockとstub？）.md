@@ -169,7 +169,7 @@ Stub を利用する際の条件は以下。
 
 ファイル構成は以下の通り。
 ```sh
-$ tree
+tree
 .
 ├── kana
 │   └── kana-time.go
@@ -234,7 +234,7 @@ Interface の実装が必要なので、base を元にしてちょっと作り�
 
 ファイル構成は以下の通り。
 ```sh
-$ tree
+tree
 .
 ├── kana
 │   └── kana-time.go
@@ -299,7 +299,7 @@ Interface の宣言を増やした。
 
 ちなみに実行すると、こんな感じ。
 ```sh
-$ go run main.go
+go run main.go
 夜だぞ！ こんばんはカナ！ 今は5時ですよ！
 ```
 
@@ -371,7 +371,7 @@ func TestGreet_1(t *testing.T) {
 
 実行してみると...エラー。
 ```sh
-$ go test
+go test
 # _/home/kanamaru/99-work/01-getTime/mock
 ./main_test.go:32:26: cannot use result.Get(0) (type interface {}) as type time.Time in return argument: need type assertion
 FAIL    _/home/kanamaru/99-work/01-getTime/mock [build failed]
@@ -447,7 +447,7 @@ https://qiita.com/nnao45/items/b8edaf82ece4f8114ddb
 
 ファイル構成は以下の通り。
 ```sh
-$ tree
+tree
 .
 ├── kana
 │   └── kana-time.go
@@ -575,7 +575,7 @@ func TestGreet_3(t *testing.T) {
 
 実行してみると、
 ```sh
-$ go test -v
+go test -v
 === RUN   TestGreet_1
 DEBUG: start Stub
 --- PASS: TestGreet_1 (0.00s)

@@ -47,7 +47,9 @@ parser_add.set_defaults(handler=command_hometimeline)
 # usertimeline コマンドの parser を作成
 parser_add = subparsers.add_parser("usertimeline", help="see `usertimeline -h`")
 parser_add.add_argument("username", type=str, help="user name")
-parser_add.add_argument("--count", default="20", help="num of tweet(1~200)")
+parser_add.add_argument("--count", default="20", help="num of tweet(1~200)，最大表示ツイート数")
+parser_add.add_argument("--since_id", default=None, help="tweetID，指定したtweetIDより未来のツイートを表示（ページングに利用）")
+parser_add.add_argument("--max_id", default=None, help="tweetID，指定したtweetIDより過去のツイートを表示（ページングに利用）")
 parser_add.add_argument("-V", "--verbose", required=False, action='store_true', help="output of debug log")   # 仮オプション
 parser_add.set_defaults(handler=command_usertimeline)
 

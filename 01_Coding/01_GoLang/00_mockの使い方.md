@@ -401,7 +401,7 @@ func (p *Person) SetName(in_name string) {
 
 テストを実際に実行する場合は、以下のコマンドを実行する。
 ```sh
-$ ginkgo -v -cover -coverprofile=./cover.out
+ginkgo -v -cover -coverprofile=./cover.out
 ```
 
 

@@ -53,7 +53,7 @@
 
 4. 動作確認
     ```sh
-    $ go version
+    go version
     go version go1.18.3 linux/amd64
     ```
 

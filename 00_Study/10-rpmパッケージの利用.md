@@ -2,6 +2,6 @@
 
 以下のコマンドを実行。
 ```
-$ sudo yum install yum-utils
-$ yumdownloader --source kernel
+sudo yum install yum-utils
+yumdownloader --source kernel
 ```

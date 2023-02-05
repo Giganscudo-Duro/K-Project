@@ -5,7 +5,8 @@ https://github.blog/2020-12-15-token-authentication-requirements-for-git-operati
 そのため、認証が必要な操作を実行すると、以下のエラーメッセージが表示される。
 
 ```sh
-[giganscudo-duro@fedora 01_GoLang]$  git push --set-upstream origin go-sse
+git push --set-upstream origin go-sse
+--[実行結果]-----
 Username for 'https://github.com': Giganscudo-Duro
 Password for 'https://Giganscudo-Duro@github.com':
 remote: Support for password authentication was removed on August 13, 2021.
@@ -39,7 +40,8 @@ fatal: Authentication failed for 'https://github.com/Giganscudo-Duro/K-Project.g
 ## 利用例
 ※個人アクセストークンは HTTPS Git 操作だけにしか使用できません。
 ```sh
-[Giganscudo-Duro@fedora 01_GoLang]$ git push --set-upstream origin go-sse
+git push --set-upstream origin go-sse
+--[実行結果]-----
 Username for 'https://github.com': Giganscudo-Duro
 Password for 'https://Giganscudo-Duro@github.com':  <- ここでトークンを入力
 Enumerating objects: 9, done.

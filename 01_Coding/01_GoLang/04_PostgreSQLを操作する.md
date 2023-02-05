@@ -48,10 +48,10 @@
 
 必要なパッケージを予め導入しておく。
 ```sh
-# apt install vim
-# apt install docker.io
-# apt install golang
-$ go get github.com/lib/pq
+sudo apt install vim
+sudo apt install docker.io
+sudo apt install golang
+go get github.com/lib/pq
 ```
 
 
@@ -152,7 +152,7 @@ func unit_gen_proc (name string, description string, product string) map[string]
 <details><summary>実行結果</summary><div>
 
 ```sh
-$ go run ./create_DB.go
+go run ./create_DB.go
 *** 開始 ***
 pq: table "contracts" does not exist
 create table contracts (id varchar(10), name varchar(20), description varchar(20),product varchar(10))
@@ -234,7 +234,7 @@ func main() {
 <details><summary>実行結果</summary><div>
 
 ```sh
-$ go run ./read_DB.go
+go run ./read_DB.go
 *** 開始 ***
 001     かなまる        男性、大分出身  PS3
 002     まつむら        男性、福岡出身  Xbox360

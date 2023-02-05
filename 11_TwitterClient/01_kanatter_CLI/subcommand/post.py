@@ -3,6 +3,10 @@ from requests_oauthlib import OAuth1Session
 import os
 import magic
 
+
+
+import inspect
+
 # 独自のパッケージ
 from callAPI import status
 from callAPI import media
@@ -118,7 +122,8 @@ def postTweet(twitter, args) :
         res = status.show(twitter, params = params)
         tweetinfo = json.loads(res.text)
         params = {
-            "status"                : "@"+tweetinfo['user']['screen_name']+" "+args.messages,
+            #"status"                : "@"+tweetinfo['user']['screen_name']+" "+args.messages,  # 仕様が変わった？もう使わない方がいい？
+            "status"                : args.messages,
             "in_reply_to_status_id" : args.replyid,
             "lat"                   : args.lat,
             "long"                  : args.long,
@@ -130,6 +135,12 @@ def postTweet(twitter, args) :
     if res.status_code == 200:
         # 正常投稿出来た場合
         print("Post Success.")
+        print(res)
+        # print( inspect.getmembers(res) )  # レスポンスの内容チェック
+        # print(res._content) # 投稿したツイートのIDチェック
+        jres = json.loads(res._content.decode('utf-8'))
+        print(jres['id'])
+
     else:
         #正常投稿出来なかった場合
         print("Post Failed. : %d"% res.status_code)

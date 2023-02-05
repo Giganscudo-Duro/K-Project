@@ -13,8 +13,8 @@
 
 ## 必要なパッケージをインストール
 ```
-$ go get github.com/jinzhu/gorm
-$ go get github.com/ant0ine/go-json-rest/rest
+go get github.com/jinzhu/gorm
+go get github.com/ant0ine/go-json-rest/rest
 ```
 
 
@@ -53,7 +53,7 @@ func helloHandler(c echo.Context) error {
 
 この子を実行してみると...
 ```sh
-$ go run main.go
+go run main.go
 
    ____    __
   / __/___/ /  ___
@@ -68,7 +68,7 @@ ____________________________________O/_______
 
 そして、上記について `curl` を叩いてみると...
 ```sh
-$ curl -v http://localhost:8080/hello
+curl -v http://localhost:8080/hello
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
 * Connected to localhost (127.0.0.1) port 8080 (#0)
@@ -155,7 +155,7 @@ func TestHelloHandler2(t *testing.T) {
 実際に実行してみると...
 
 ```sh
-$ go test -v
+go test -v
 === RUN   TestHelloHandler1
 -----------------------------------------------
 DEBUG: req = &{GET /hello HTTP/1.1 1 1 map[] {} <nil> 0 [] false example.com map[] map[] <nil> map[] 192.0.2.1:1234 /hello <nil> <nil> <nil> <nil>}
