@@ -27,7 +27,7 @@
     dnf module list nodejs
     
     # Node.js 16 をインストールする場合
-    dnf module install nodejs:16
+    sudo dnf module install nodejs:16
     
     # Node.js 16 が[e]nabled, [i]nstalled 状態になったことを確認
     dnf module list nodejs
@@ -36,13 +36,15 @@
     node -v
     
     # 他バージョンの Node.js に切り替えたい場合は一旦リセットする
-    dnf module reset nodejs
+    sudo dnf module reset nodejs
     
     # 今度は Node.js 12 を有効にしてインストール
-    dnf module enable nodejs:12
-    dnf module install nodejs:12/default
+    # 利用可能プロファイルは common, development, minimal で、dnf mofule list nodejs 実行時に確認できる
+    sudo dnf module enable nodejs:14
+    sudo dnf module install nodejs:14/common
+
     
-    # Node.js 12 が [e]nabled 状態になった事を確認
+    # Node.js 14 が [e]nabled 状態になった事を確認
     dnf module list nodejs 
     
     # Node.js のバージョンを確認
@@ -50,31 +52,75 @@
     ``` 
 
 
+後述の作成したプロジェクトの実行時に ` Error: error:0308010C:digital envelope routines::unsupported` が起きてしまう。
+なので、node のバージョンを 16.15.1 にダウングレードしてあげる
+```sh
+sudo n stable
+sudo n 16.15.1
+sudo n
+``` 
+
 
 # 手順１：まずは Nuxt のプロジェクトを作る
 以下のコマンドを実行して、プロジェクトを作成する。  
 ```sh
-$ npx create-nuxt-app KANA-SAMPLE
+npx create-nuxt-app NUXT-SAMPLE
 ```
 
 設定内容は以下の通り。
+```sh
+[kanamaru@fedora ~]$ npx create-nuxt-app NUXT-SAMPLE
+
+create-nuxt-app v5.0.0
+?  Generating Nuxt.js project in NUXT-SAMPLE
+? Project name: NUXT-SAMPLE
+? Programming language: TypeScript
+? Package manager: Npm
+? UI framework: None
+? Template engine: HTML
+? Nuxt.js modules: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+? Linting tools: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+? Testing framework: None
+? Rendering mode: Single Page App
+? Deployment target: Server (Node.js hosting)
+? Development tools: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+? What is your GitHub username?
+? Version control system: None
+Warning: name can no longer contain capital letters
+
+??  Successfully created project NUXT-SAMPLE
+
+  To get started:
+
+        cd NUXT-SAMPLE
+        npm run dev
+
+  To build & start for production:
+
+        cd NUXT-SAMPLE
+        npm run build
+        npm run start
 
 
-| 項目名               | 設定内容 | 備考 |
-|----------------------|----------------------------------------------------|--|
-| Project name         | KANA-SAMPLE                                        |  |
-| Programming language | TypeScript                                         |  |
-| Package manager      | Npm                                                |  |
-| UI framework         | None                                               |  |
-| Nuxt.js modules      | Axios, Progressive Web App (PWA), Content          |  |
-| Linting tools        | ESLint, Prettier, Lint staged files, StyleLint     |  |
-| Testing framework    | None                                               |  |
-| Rendering mode       | Universal (SSR / SSG)                              |  |
-| Deployment target    | Server (Node.js hosting)                           |  |
-| Development tools    |                                                    |  |
+  For TypeScript users.
+
+  See : https://typescript.nuxtjs.org/cookbook/components/
+``` 
 
 
 いつもの手順で動作してるかどうかを確認する。
+```sh
+cd NUXT-SAMPLE
+npm run dev
+``` 
+
+
+
+
+
+
+
+
 ```sh
 $ ssh -X <UserName>@<IP-Address>
 $ firefox localhost:3000
@@ -109,5 +155,9 @@ $ firefox localhost:3000
 
 
 
+# トラブル
+
+## トラブル１
+- [「 Error: error:0308010C:digital envelope routines::unsupported 」 の対処法]( https://zenn.dev/pontagon333/articles/26c89cbc14e81f )
 
 
