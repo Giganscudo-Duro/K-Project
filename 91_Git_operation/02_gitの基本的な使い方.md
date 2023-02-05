@@ -20,19 +20,19 @@
 ## リモートリポジトリを手元にクローンして開発を始める
 以下のコマンドを実行。
 ```sh
-$ git clone <URL>
-$ git checkout -b <ローカルブランチ名> <リモートにあるブランチ名>
+git clone <URL>
+git checkout -b <ローカルブランチ名> <リモートにあるブランチ名>
 ```
 あとは、開発を進めればOK。
 
 ## 開発内容をリモートリポジトリに反映させる
 以下のコマンドを実行。
 ```sh
-$ git pull
-$ git status
-$ git add <変更したファイル>
-$ git commit -m "コメント"
-$ git push --set-upstream origin <ローカルブランチ名>
+git pull
+git status
+git add <変更したファイル>
+git commit -m "コメント"
+git push --set-upstream origin <ローカルブランチ名>
 ```
 
 
@@ -64,8 +64,8 @@ $ git push --set-upstream origin <ローカルブランチ名>
 ## 手順 0：Git Hub のアカウントを取得する
 とりあえずアカウントを取得したら、開発マシン上で以下のコマンドを実行しておく。
 ```sh
-$ git config --global user.email "<GitHubに登録したメルアド>"
-$ git config --global user.name "<コミット時に表示させたいユーザ名（適当でいい）>"
+git config --global user.email "<GitHubに登録したメルアド>"
+git config --global user.name "<コミット時に表示させたいユーザ名（適当でいい）>"
 ```
 
 
@@ -89,21 +89,23 @@ Web ブラウザ上で実施することになる。
 
 まずは自分の開発マシン上に、先程作成した git をクローン。
 ```sh
-$ git clone https://github.com/Giganscudo-Duro/study-git-command.git
+git clone https://github.com/Giganscudo-Duro/study-git-command.git
+--[実行結果]-----
 Cloning into 'study-git-command'...
 warning: You appear to have cloned an empty repository.
 ```
 
 空っぽの git がクローンされたはずなので、`study-git-command` ディレクトリに移動する。
 ```sh
-$ cd study-git-command/
+cd study-git-command/
 ```
 
 `study-git-command` ディレクトリ内で README.md ファイルを作成する。
 ```sh
-$ echo "This is README file." > README.md
-$ echo "This is master branch." >> README.md
-$ cat ./README.md
+echo "This is README file." > README.md
+echo "This is master branch." >> README.md
+cat ./README.md
+--[実行結果]-----
 This is README file.
 This is master branch.
 ```
@@ -113,27 +115,30 @@ master ブランチの作成 ＆ README.md をリモートリポジトリに pus
 1. `git add` コマンドで、変更を加えたファイルをインデックスに追加  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git add ./README.md
+    git add ./README.md
     ```
 
 2. `git commit` コマンドで、ローカルリポジトリにコミット  
     開発マシン上で、以下のコマンドを実行する。  
     ```sh
-    $ git commit -m "Create master branch"
+    git commit -m "Create master branch"
+    --[実行結果]-----
     [master (root-commit) 94f2ff4] Create master branch
      1 file changed, 2 insertions(+)
      create mode 100644 README.md
     ```
     実行結果確認のため `git branch` コマンドを実行する。
     ```sh
-    $ git branch -a
+    git branch -a
+    --[実行結果]-----
     * master    ← ローカルリポジトリに `master` ブランチが作られている
     ```
 
 3. `git push` コマンドで、ローカルリポジトリの内容をリモートリポジトリに反映  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git push
+    git push
+    --[実行結果]-----
     Username for 'https://github.com': <E-mail>
     Password for 'https://<E-mail>@github.com':
     Counting objects: 3, done.
@@ -145,7 +150,8 @@ master ブランチの作成 ＆ README.md をリモートリポジトリに pus
 
 最後に `git branch` コマンドを実行し、リモートリポジトリに master ブランチが作成されたことを確認できたら、手順２は完了。
 ```sh
-$ git branch -a
+git branch -a
+--[実行結果]-----
 * master
   remotes/origin/master  ← リモートリポジトリに `remotes/origin/master` ブランチが作られている
 ```
@@ -157,20 +163,23 @@ $ git branch -a
 
 今のブランチを確認するため、以下のコマンドを実行。
 ```sh
-$ git branch -a
+git branch -a
+--[実行結果]-----
 * master
   remotes/origin/master
 ```
 
 develop ブランチの作成＆そこに移動するため、以下のコマンドを実行。
 ```sh
-$ git checkout -b develop
+git checkout -b develop
+--[実行結果]-----
 Switched to a new branch 'develop'
 ```
 
 develop ブランチに移動してることを確認するため、以下のコマンドを実行。
 ```sh
-$ git branch -a
+git branch -a
+--[実行結果]-----
 * develop
   master
   remotes/origin/master
@@ -180,8 +189,9 @@ $ git branch -a
 
 とりあえず develop ブランチだという説明を README.md に追加。
 ```sh
-$ echo "This is develop branch." >> ./README.md
-$ cat ./README.md
+echo "This is develop branch." >> ./README.md
+cat ./README.md
+--[実行結果]-----
 This is README file.
 This is master branch.
 This is develop branch.  ← NEW
@@ -192,7 +202,8 @@ develop ブランチの作成 ＆ リモートリポジトリに反映させる�
 1. `git status` コマンドで、今回の開発で変更を加えたファイルを確認  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git status
+    git status
+    --[実行結果]-----
     ブランチ develop
     Changes not staged for commit:
       (use "git add <file>..." to update what will be committed)
@@ -206,13 +217,14 @@ develop ブランチの作成 ＆ リモートリポジトリに反映させる�
 2. 変更した README.md をインデックスに追加  
     開発マシン上で、以下のコマンドを実行。
     ```sh
-    $ git add ./README.md
+    git add ./README.md
     ```
 
 3. ローカルリポジトリの develop ブランチにコミット  
     開発マシン上で、以下のコマンドを実行。
     ```sh
-    $ git commit -m "Create develop branch"
+    git commit -m "Create develop branch"
+    --[実行結果]-----
     [develop 4938f30] Create develop branch
      1 file changed, 1 insertion(+)
     ```
@@ -221,7 +233,8 @@ develop ブランチの作成 ＆ リモートリポジトリに反映させる�
     開発マシン上で、以下のコマンドを実行。  
     (今回はリモートリポジトリに無いブランチを反映するので origin ってのを指定する必要がある)
     ```sh
-    $ git push --set-upstream origin develop
+    git push --set-upstream origin develop
+    --[実行結果]-----
     Username for 'https://github.com': <E-mail>
     Password for 'https://<E-mail>@github.com':
     Counting objects: 3, done.
@@ -240,7 +253,8 @@ develop ブランチの作成 ＆ リモートリポジトリに反映させる�
 
 最後に、`git branch` コマンドを実行して、リモートリポジトリにも develop ブランチが作成されたことを確認できたら、手順３は完了。
 ```sh
-$ git branch -a
+git branch -a
+--[実行結果]-----
 * develop
   master
   remotes/origin/develop  ← リモートリポジトリにも develop ブランチができてる
@@ -258,7 +272,8 @@ $ git branch -a
 ## 手順 5：各開発者が、ローカルマシン上に git を clone する
 `git clone` コマンドを実行し、自分の開発マシン上にリポジトリをクローン。
 ```sh
-$ git clone https://github.com/Giganscudo-Duro/study-git-command.git
+git clone https://github.com/Giganscudo-Duro/study-git-command.git
+--[実行結果]-----
 Cloning into 'study-git-command'...
 remote: Enumerating objects: 6, done.
 remote: Counting objects: 100% (6/6), done.
@@ -269,8 +284,9 @@ Unpacking objects: 100% (6/6), done.
 
 `git branch` コマンドを実行してブランチの状態を確認できたら、手順５は完了。
 ```sh
-$ cd study-git-command
-$ git branch -a
+cd study-git-command
+git branch -a
+--[実行結果]-----
 * master
   remotes/origin/HEAD -> origin/master
   remotes/origin/develop
@@ -279,7 +295,8 @@ $ git branch -a
 
 ちなみに README.md をチェックすると、以下が表示される。
 ```sh
-$ cat README.md
+cat README.md
+--[実行結果]-----
 This is README file.
 This is master branch.  ← 今は master ブランチにいることがわかる
 ```
@@ -290,14 +307,16 @@ This is master branch.  ← 今は master ブランチにいることがわか�
 
 リモートリポジトリの develop ブランチを、ローカルリポジトリに取り込むため、以下のコマンドを実行。
 ```sh
-$ git checkout -b develop remotes/origin/develop
+git checkout -b develop remotes/origin/develop
+--[実行結果]-----
 Branch 'develop' set up to track remote branch 'develop' from 'origin'.
 Switched to a new branch 'develop'
 ```
 
 `git branch` コマンドを実行し、ローカルリポジトリのブランチが切り替わったことを確認する。
 ```sh
-$ git branch -a
+git branch -a
+--[実行結果]-----
 * develop  ← さっきまでなかったブランチが出来上がっている
   master
   remotes/origin/HEAD -> origin/master
@@ -307,7 +326,8 @@ $ git branch -a
 
 ちなみに README.md をチェックすると、以下が表示される。
 ```sh
-$ cat README.md
+cat README.md
+--[実行結果]-----
 This is README file.
 This is master branch.
 This is develop branch.  ← develop ブランチにいるので、コイツが表示される
@@ -315,13 +335,15 @@ This is develop branch.  ← develop ブランチにいるので、コイツが�
 
 この develop ブランチをベースにして自分用のブランチ「kana-develop」を作成するため、以下のコマンドを実行。
 ```sh
-$ git checkout -b kana-develop
+git checkout -b kana-develop
+--[実行結果]-----
 Switched to a new branch 'kana-develop'
 ```
 
 `git branch` コマンドを実行し、ローカルリポジトリの kana-develop に切り替わってることを確認したら、手順６は完了。
 ```sh
-$ git branch -a
+git branch -a
+--[実行結果]-----
   develop
 * kana-develop  ← さっきまでなかったブランチに切り替わっている
   master
@@ -335,11 +357,12 @@ $ git branch -a
 どんな開発をするかは人によって違うので、割愛。  
 今回は README.md を少し更新するため、以下のコマンドを実行。
 ```sh
-$ echo "This is kana-develop branch." >> ./README.md
+echo "This is kana-develop branch." >> ./README.md
 ```
 README.md が更新されたら、今回の手順７は完了。
 ```sh
-$ cat ./README.md
+cat ./README.md
+--[実行結果]-----
 This is README file.
 This is master branch.
 This is develop branch.
@@ -353,7 +376,8 @@ This is kana-develop branch.  ← これを追加した
 1. `git status` コマンドで、今回の開発で変更を加えたファイルを確認  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git status
+    git status
+    --[実行結果]-----
     ブランチ kana-develop
     Changes not staged for commit:
       (use "git add <file>..." to update what will be committed)
@@ -367,14 +391,15 @@ This is kana-develop branch.  ← これを追加した
 2. `git add` コマンドで、変更を加えたファイルをインデックスに追加  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git add ./README.md  ← 今回は README.md ファイル
+    git add ./README.md  ← 今回は README.md ファイル
     ```
 
 3. `git commit` コマンドで、ローカルリポジトリにコミット  
     開発マシン上で、以下のコマンドを実行する。  
     指定する文字列部には、「変更内容」を入力する。
     ```sh
-    $ git commit -m "Create kana-develop branch"
+    git commit -m "Create kana-develop branch"
+    --[実行結果]-----
     [kana-develop 3bcbb14] Create kana-develop branch
      1 file changed, 1 insertion(+)
     ```
@@ -382,7 +407,8 @@ This is kana-develop branch.  ← これを追加した
 4. `git push` コマンドで、ローカルリポジトリの内容をリモートリポジトリに反映  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git push --set-upstream origin kana-develop
+    git push --set-upstream origin kana-develop
+    --[実行結果]-----
     Username for 'https://github.com': <E-mail>
     Password for 'https://<E-mail>@github.com':
     Counting objects: 3, done.
@@ -401,7 +427,8 @@ This is kana-develop branch.  ← これを追加した
 
 `git branch` コマンドを実行し、リモートリポジトリに kana-develop が追加されたことを確認できたら、手順8は完了。
 ```sh
-$ git branch -a
+git branch -a
+--[実行結果]-----
   develop
 * kana-develop
   master
@@ -419,7 +446,8 @@ $ git branch -a
 
 `git branch` コマンドを実行し、どのブランチに自分がいるのかを確認する。
 ```sh
-$ git branch -a
+git branch -a
+--[実行結果]-----
   develop
 * kana-develop  ← ローカルリポジトリの kana-develop にいる
   master
@@ -431,12 +459,12 @@ $ git branch -a
 
 この状態で、色々ファイルを新規作成し、開発が一通り完了したと仮定する。
 ```sh
-$ touch new-develop
-$ mkdir yobikata
-$ touch yobikata/kana-chan
-$ touch yobikata/kana-kun
-$ touch yobikata/kana-san
-$ touch yobikata/kana-sama
+touch new-develop
+mkdir yobikata
+touch yobikata/kana-chan
+touch yobikata/kana-kun
+touch yobikata/kana-san
+touch yobikata/kana-sama
 ```
 
 開発内容をリモートリポジトリに反映させるため、以下の４つのステップを実行。
@@ -444,7 +472,8 @@ $ touch yobikata/kana-sama
 1. `git status` コマンドで、今回の開発で変更を加えたファイルを確認  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git status
+    git status
+    --[実行結果]-----
     ブランチ kana-develop
     Your branch is up to date with 'origin/kana-develop'.
     
@@ -460,12 +489,13 @@ $ touch yobikata/kana-sama
 2. `git add` コマンドで、変更を加えたファイルをインデックスに追加  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git add new-develop
-    $ git add yobikata/
+    git add new-develop
+    git add yobikata/
     ```
     ちなみに、今のステータスはこんな感じ。
     ```sh
-    $ git status
+    git status
+    --[実行結果]-----
     ブランチ kana-develop
     Your branch is up to date with 'origin/kana-develop'.
     
@@ -483,7 +513,8 @@ $ touch yobikata/kana-sama
     開発マシン上で、以下のコマンドを実行する。  
     指定する文字列部には、「変更内容」を入力する。
     ```sh
-    $ git commit -m "Update kana-develop branch"
+    git commit -m "Update kana-develop branch"
+    --[実行結果]-----
     [kana-develop da96920] Update kana-develop branch
      5 files changed, 0 insertions(+), 0 deletions(-)
      create mode 100644 new-develop
@@ -496,7 +527,8 @@ $ touch yobikata/kana-sama
 4. `git push` コマンドで、ローカルリポジトリの内容をリモートリポジトリに反映  
     開発マシン上で、以下のコマンドを実行する。
     ```sh
-    $ git push
+    git push
+    --[実行結果]-----
     Username for 'https://github.com': <E-mail>
     Password for 'https://<E-mail>@github.com':
     Counting objects: 4, done.
