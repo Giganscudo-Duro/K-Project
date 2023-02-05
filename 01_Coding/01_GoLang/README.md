@@ -10,40 +10,40 @@
 1. バイナリダウンロード＆インストール
     ```sh
     # wget をインストール
-    $ sudo yum -y install wget
+    sudo yum -y install wget
 
     # カレントディレクトリを移動
-    $ cd /usr/local
+    cd /usr/local
 
     # ダウンロード
-    $ sudo wget https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
+    sudo wget https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
 
     # 解凍 (/usr/local/go ができる)
     # $ tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
-    $ sudo tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
 
     # 圧縮ファイルを削除
-    $ sudo rm -rf go1.18.3.linux-amd64.tar.gz
+    sudo rm -rf go1.18.3.linux-amd64.tar.gz
     ``` 
 
 2. GOPATH の設定
     ```sh
     # go コマンドのパスを通す。これで go コマンドが使えるようになる
-    $ export PATH=$PATH:/usr/local/go/bin
+    export PATH=$PATH:/usr/local/go/bin
 
     # GOPATH の設定
     # ↓基本的な設定 (https://github.com/golang/go/wiki/SettingGOPATH)
-    $ export GOPATH=$HOME/.go
-    $ export PATH=$PATH:$GOPATH/bin
+    export GOPATH=$HOME/.go
+    export PATH=$PATH:$GOPATH/bin
     ``` 
 
 3. `.bashrc` の変更
     ```sh
     # ホームディレクトリに戻る
-    $ cd
+    cd
 
     # .bashrc を編集
-    $ vi .bashrc
+    vi .bashrc
 
     # 下記を最終行くらいに追加 (どこでもいい)
     export PATH=$PATH:/usr/local/go/bin
@@ -53,7 +53,7 @@
 
 4. 動作確認
     ```sh
-    $ go version
+    go version
     go version go1.18.3 linux/amd64
     ```
 

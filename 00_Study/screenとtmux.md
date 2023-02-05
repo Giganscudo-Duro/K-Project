@@ -17,12 +17,22 @@ screen や tmux はセッションのデタッチ・アタッチ以外にも、�
 ## 事前準備
 
 - 接続先サーバーに screen もしくは tmux をインストール
-    - screen のインストールコマンド
-        RHEL、CentOSの場合）`yum install screen`
-        ubuntu の場合）`apt install screen`
+    - screen をインストール
+        ```sh
+        # RHEL、CentOSの場合）
+        sudo yum install screen
+
+        # ubuntu の場合）
+        sudo apt install screen
+        ``` 
     - tmux のインストールコマンド
-        RHEL、CentOSの場合）`yum install tmux`
-        ubuntu の場合）`apt install tmux`
+        ```sh
+        # RHEL、CentOSの場合）
+        sudo yum install tmux
+
+        # ubuntu の場合）
+        sudo apt install tmux
+        ``` 
 
 
 ## 利用例１：screenを用いたセッションの保存と復帰
@@ -32,13 +42,17 @@ screen や tmux はセッションのデタッチ・アタッチ以外にも、�
 ## 利用例２：tmuxを用いたセッションの保存と復帰
 1. tmux を起動
     以下のコマンドを実行します。
-    `tmux`
+    ```sh
+    tmux
+    ```
 
 2. tmux を起動した状態で、各種作業を実施
 
 3. 作業を中断するため、セッションをデタッチ
     以下のコマンドを実行します。
-    `PREFIX d`
+    ```sh
+    PREFIX d
+    ``` 
 
 4. サーバーとのSSH接続を終了
 
@@ -46,14 +60,20 @@ screen や tmux はセッションのデタッチ・アタッチ以外にも、�
 
 6. 保存されているセッションの一覧を確認
     以下のコマンドを実行
-    `tmux ls`
+    ```sh
+    tmux ls
+    ``` 
 
 7. 一覧に表示されたセッションにアタッチ
-    `tmux a`
+    ```sh
+    tmux a
+    ``` 
 
 8. 作業が終了し、tmuxを終了する
     通常のターミナルと同様に、以下のコマンドを実行します。
-    `exit`
+    ```sh
+    exit
+    ```
 
 
 https://www.sbcloud.co.jp/entry/column/security_part9?utm_source=feed

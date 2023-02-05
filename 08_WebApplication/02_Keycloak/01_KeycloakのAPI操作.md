@@ -41,7 +41,7 @@ https://qiita.com/namikitakeo/items/cfb66928fad8882ea25a
 KVM ホストからは、以下のコマンドを実行する。
 会社と同じように SSH 経由で X window を飛ばせるようにしておく。
 ```
-$ ssh kanamaru@192.168.122.153 -X
+ssh kanamaru@192.168.122.153 -X
 ```
 
 
@@ -53,7 +53,7 @@ $ ssh kanamaru@192.168.122.153 -X
 以下のコマンドを実行。  
 とりあえず、8080 ポートを使ってポートフォワード。
 ```
-$ docker run -d  \
+docker run -d  \
    -p 8080:8080 \
    -e KEYCLOAK_USER=admin \
    -e KEYCLOAK_PASSWORD=admin \
@@ -102,7 +102,7 @@ OIDCPreservePost              On
 ## token を取得する
 
 ```sh
-$ curl -d "client_id=admin-cli" \
+curl -d "client_id=admin-cli" \
   -d "username=admin" \
   -d "password=admin" \
   -d "grant_type=password" \
@@ -112,7 +112,7 @@ $ curl -d "client_id=admin-cli" \
 <details><summary>実行結果</summary><div>
 
 ```sh
-kanamaru@vm-ubuntu18:~$ curl -d "client_id=admin-cli"   -d "username=admin"   -d "password=admin"   -d "grant_type=password"   "172.17.0.2:8080/auth/realms/master/protocol/openid-connect/token" | jq
+curl -d "client_id=admin-cli"   -d "username=admin"   -d "password=admin"   -d "grant_type=password"   "172.17.0.2:8080/auth/realms/master/protocol/openid-connect/token" | jq
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  1791  100  1722  100    69  14231    570 --:--:-- --:--:-- --:--:-- 14801
@@ -135,7 +135,7 @@ kanamaru@vm-ubuntu18:~$ curl -d "client_id=admin-cli"   -d "username=admin"   -d
 ## ユーザ一覧を取得する
 
 ```sh
-$ curl   -H "Authorization: bearer <ACCESS_TOKEN>" \
+curl   -H "Authorization: bearer <ACCESS_TOKEN>" \
   "172.12.0.2:8080/auth/admin/realms/master/users"
 ```
 
@@ -170,7 +170,7 @@ curl -X GET \
 ## 特定のユーザ情報を取得する
 
 ```sh
-$ curl   -H "Authorization: bearer <ACCESS_TOKEN>" \
+curl   -H "Authorization: bearer <ACCESS_TOKEN>" \
   "172.12.0.2:8080/auth/admin/realms/master/users/<USERID>"
 ```
 
@@ -218,7 +218,7 @@ curl -X GET \
 ## グループ一覧を取得する
 
 ```sh
-$ curl   -H "Authorization: bearer <ACCESS_TOKEN>" \
+curl   -H "Authorization: bearer <ACCESS_TOKEN>" \
   "172.12.0.2:8080/auth/admin/realms/master/groups"
 ```
 
@@ -250,7 +250,7 @@ curl -X GET \
 ## 特定のグループ情報を取得する
 
 ```sh
-$ curl   -H "Authorization: bearer <ACCESS_TOKEN>" \
+curl   -H "Authorization: bearer <ACCESS_TOKEN>" \
   "172.12.0.2:8080/auth/admin/realms/master/groups"
 ```
 
