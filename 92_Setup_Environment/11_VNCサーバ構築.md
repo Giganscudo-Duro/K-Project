@@ -27,10 +27,16 @@ Verify:
 ## ファイアウォールの設定を変更
 基本的に VNC は TCP の「5900＋セッション番号」のポートを利用する。
 今回はセッション１しか使わないので「5901番ポート」を使うことにあるので、そこを開ける。
-```sh
-firewall-cmd --add-port=5901/tcp --permanent
-firewall-cmd --reload
-```
+- ポートを直接指定する場合
+    ```sh
+    sudo firewall-cmd --add-port=5901/tcp --permanent
+    sudo firewall-cmd --reload
+    ```
+- サービスを直接指定する場合
+    ```sh
+    sudo firewall-cmd --add-service=vnc-server --permanent
+    sudo firewall-cmd --reload
+    ```
 
 設定が反映されたかチェックするため、以下のコマンドを実行
 ```sh
@@ -58,7 +64,9 @@ vncserver :1
 ```
 
 
-
+# VNCサーバに接続
+UltraVNC等を起動し、VNCサービスを起動したサーバにアクセスする。
+今回は環境`192.168.1.8`上でセッション番号`1`としてサービスを起動したので、`192.168.1.8:1` に接続する。
 
 
 
