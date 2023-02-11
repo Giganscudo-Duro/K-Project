@@ -4,6 +4,15 @@
 以下のコマンドを実行。  
 ここら辺は、色々とバージョンの兼ね合いとかがあるので、注意が必要。  
 
+- Ubuntu  
+    ```sh
+    sudo apt install nodejs npm
+    npm aache clean
+    npm install -g n
+    n stable
+    npm update -g npm
+    ```
+
 - Fedora
     ```sh
     # 利用可能なモジュールのリストを確認
@@ -21,6 +30,18 @@
     # Node.js のバージョンを確認
     node -v
     
+    後述の作成したプロジェクトの実行時に ` Error: error:0308010C:digital envelope routines::unsupported` が起きてしまう。
+    なので、node のバージョンを 16.15.1 にダウングレードしてあげる
+    ```sh
+    sudo n stable
+    sudo n 16.15.1
+    sudo n
+    ``` 
+
+
+
+- Fedora(おまけ)
+    ```sh
     # 他バージョンの Node.js に切り替えたい場合は一旦リセットする
     sudo dnf module reset nodejs
     
@@ -35,27 +56,6 @@
     # Node.js のバージョンを確認
     node -v
     ``` 
-    後述の作成したプロジェクトの実行時に ` Error: error:0308010C:digital envelope routines::unsupported` が起きてしまう。
-    なので、node のバージョンを 16.15.1 にダウングレードしてあげる
-    ```sh
-    sudo n stable
-    sudo n 16.15.1
-    sudo n
-    ``` 
-
-
-
-- Ubuntu  
-    ```sh
-    sudo apt install nodejs npm
-    npm aache clean
-    npm install -g n
-    n stable
-    npm update -g npm
-    ```
-
-
-
 
 
 
