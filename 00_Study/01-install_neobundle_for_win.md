@@ -1,3 +1,12 @@
+
+
+
+
+# Dein
+https://kaworu.jpn.org/vim/Vim%E3%81%A8NeoVim%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3Dein.vim
+
+
+
 # プラグイン管理ツール NeoBundle
 
 ## Windows環境（GNUpack）に導入
@@ -13,6 +22,7 @@
 1. Cygwin を起動  
     いつもの `startup_cygwin.exe` を起動すればOK  
 2. ホームディレクトリにneobundleをクローン  
+
     以下のコマンドを実行。  
     ```sh
     # クローン用のディレクトリを作成
@@ -61,10 +71,17 @@
 
 
 ### はまりポイント
-- http://embedded-memo.blogspot.com/2013/03/windows8-64bit-cygwin.html
+- http://embedded-memo.blogspot.com/2013/03/windows8-64bit-cygwin.html  
     `fatal error in forked process - recreate_mmaps_after_fork_failed`というエラーが出ることがある。  
     この場合は、vim を起動する前に `export LANG=C` を設定すると解決する。  
     git push とかでもそういうエラーが出るはず。
+
+- NeoBundle の導入スクリプト
+https://qiita.com/kimurap/items/78ef1041a8f2392718a6
+https://qiita.com/muran001/items/3080c4816b7c2e65e40b
+https://www.jonki.net/entry/20140406/1396773150
+https://qiita.com/Kuchitama/items/68b6b5d5ed40f6f96310
+https://kaworu.jpn.org/vim/NeoBundle
 
 
 
