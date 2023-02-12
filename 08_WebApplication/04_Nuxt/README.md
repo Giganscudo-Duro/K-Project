@@ -8,9 +8,10 @@
     ```sh
     sudo apt install nodejs npm
     npm aache clean
-    npm install -g n
-    n stable
     npm update -g npm
+    npm install -g n
+    npm install yarn -g
+    n stable
     ```
 
 - Fedora
@@ -30,9 +31,13 @@
     # Node.js のバージョンを確認
     node -v
     
-    後述の作成したプロジェクトの実行時に ` Error: error:0308010C:digital envelope routines::unsupported` が起きてしまう。
-    なので、node のバージョンを 16.15.1 にダウングレードしてあげる
-    ```sh
+
+    sudo npm update -g npm
+    sudo npm install -g n
+    sudo npm install yarn -g
+
+    # 後述するが、NUXT実行時の ` Error: error:0308010C:digital envelope routines::unsupported` を避けるため
+    # node のバージョンを 16.15.1 にダウングレードしてあげる
     sudo n stable
     sudo n 16.15.1
     sudo n
@@ -59,37 +64,21 @@
 
 
 
-
-
-
-
-
-
-# トラブル
-
-## トラブル１
-- [「 Error: error:0308010C:digital envelope routines::unsupported 」 の対処法]( https://zenn.dev/pontagon333/articles/26c89cbc14e81f )
-
-
-
-
-
-
-# 手順１：まずは Nuxt のプロジェクトを作る
+## Nuxt のプロジェクト作成
 以下のコマンドを実行して、プロジェクトを作成する。  
 ```sh
-npx create-nuxt-app NUXT-SAMPLE
+npx create-nuxt-app <任意のプロジェクト名>
 ```
 
-設定内容は以下の通り。
+実際に実行した結果は以下。
 ```sh
-[kanamaru@fedora ~]$ npx create-nuxt-app NUXT-SAMPLE
-
+npx create-nuxt-app NUXT-SAMPLE
+--[実行結果]-----
 create-nuxt-app v5.0.0
-?  Generating Nuxt.js project in NUXT-SAMPLE
+✨  Generating Nuxt.js project in NUXT-SAMPLE
 ? Project name: NUXT-SAMPLE
 ? Programming language: TypeScript
-? Package manager: Npm
+? Package manager: Yarn
 ? UI framework: None
 ? Template engine: HTML
 ? Nuxt.js modules: (Press <space> to select, <a> to toggle all, <i> to invert selection)
@@ -102,18 +91,18 @@ create-nuxt-app v5.0.0
 ? Version control system: None
 Warning: name can no longer contain capital letters
 
-??  Successfully created project NUXT-SAMPLE
+🎉  Successfully created project NUXT-SAMPLE
 
   To get started:
 
         cd NUXT-SAMPLE
-        npm run dev
+        yarn dev
 
   To build & start for production:
 
         cd NUXT-SAMPLE
-        npm run build
-        npm run start
+        yarn build
+        yarn start
 
 
   For TypeScript users.
@@ -122,12 +111,38 @@ Warning: name can no longer contain capital letters
 ``` 
 
 
-いつもの手順で動作してるかどうかを確認する。
+
+
+
+## NUXT の設定を変更する
+
+デフォルトだと、localhost:3000 でしかアクセスできない。
+なので、`<プライベートIP>:<ポート番号>`でアクセスできるように設定を変更する。
+
+- `~/<NUXT-SAMPLE>/package.json`
+    ```
+      ...(snip)...
+       "devDependencies": {
+         "@nuxt/types": "^2.15.8",
+         "@nuxt/typescript-build": "^2.1.0"
+    +  },
+    +  "config": {
+    +    "nuxt": {
+    +      "host": "0.0.0.0",
+    +      "port": "3000"
+    +    }
+       }
+     }
+    ```
+
+## NUXT を起動する
+実行結果中の指示に従って、起動する。
 ```sh
 cd NUXT-SAMPLE
-npm run dev
+yarn dev
 ``` 
 
+あとは手元でブラウザを立ち上げて、プライベートIP:3000へとアクセスすればOK
 
 
 
@@ -135,10 +150,63 @@ npm run dev
 
 
 
-```sh
-$ ssh -X <UserName>@<IP-Address>
-$ firefox localhost:3000
-```
+
+
+# トラブル
+
+## トラブル１
+- [「 Error: error:0308010C:digital envelope routines::unsupported 」 の対処法]( https://zenn.dev/pontagon333/articles/26c89cbc14e81f )  
+    NUXTを起動した際に以下のエラー
+    ```sh
+    node:internal/crypto/hash:71
+      this[kHandle] = new _Hash(algorithm, xofLen);
+                      ^
+    
+    Error: error:0308010C:digital envelope routines::unsupported
+        at new Hash (node:internal/crypto/hash:71:19)
+        at Object.createHash (node:crypto:130:10)
+        at module.exports (/home/kanamaru/NUXT-SAMPLE/node_modules/webpack/lib/util/createHash.js:135:53)
+        at NormalModule._initBuildHash (/home/kanamaru/NUXT-SAMPLE/node_modules/webpack/lib/NormalModule.js:417:16)
+        at handleParseError (/home/kanamaru/NUXT-SAMPLE/node_modules/webpack/lib/NormalModule.js:471:10)
+        at /home/kanamaru/NUXT-SAMPLE/node_modules/webpack/lib/NormalModule.js:503:5
+        at /home/kanamaru/NUXT-SAMPLE/node_modules/webpack/lib/NormalModule.js:358:12
+        at /home/kanamaru/NUXT-SAMPLE/node_modules/webpack/node_modules/loader-runner/lib/LoaderRunner.js:373:3
+        at iterateNormalLoaders (/home/kanamaru/NUXT-SAMPLE/node_modules/webpack/node_modules/loader-runner/lib/LoaderRunner.js:214:10)
+        at Array.<anonymous> (/home/kanamaru/NUXT-SAMPLE/node_modules/webpack/node_modules/loader-runner/lib/LoaderRunner.js:205:4)
+        at Storage.finished (/home/kanamaru/NUXT-SAMPLE/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)
+        at /home/kanamaru/NUXT-SAMPLE/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9
+        at /home/kanamaru/NUXT-SAMPLE/node_modules/graceful-fs/graceful-fs.js:123:16
+        at FSReqCallback.readFileAfterClose [as oncomplete] (node:internal/fs/read_file_context:68:3) {
+      opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+      library: 'digital envelope routines',
+      reason: 'unsupported',
+      code: 'ERR_OSSL_EVP_UNSUPPORTED'
+    }
+    error Command failed with exit code 1.
+    info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+    [kanamaru@fedora NUXT-SAMPLE]$ node:internal/process/promises:279
+                triggerUncaughtException(err, true /* fromPromise */);
+                ^
+    
+    RpcIpcMessagePortClosedError: Cannot send the message - the message port has been closed for the process 3318.
+        at /home/kanamaru/NUXT-SAMPLE/node_modules/fork-ts-checker-webpack-plugin/lib/rpc/rpc-ipc/RpcIpcMessagePort.js:47:47
+        at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+      code: undefined,
+      signal: undefined
+    }
+    node:internal/process/promises:279
+                triggerUncaughtException(err, true /* fromPromise */);
+                ^
+    
+    RpcIpcMessagePortClosedError: Cannot send the message - the message port has been closed for the process 3319.
+        at /home/kanamaru/NUXT-SAMPLE/node_modules/fork-ts-checker-webpack-plugin/lib/rpc/rpc-ipc/RpcIpcMessagePort.js:47:47
+        at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+      code: undefined,
+      signal: undefined
+    }
+    
+    ```
+
 
 
 
@@ -162,7 +230,13 @@ $ firefox localhost:3000
 
 https://developer.fedoraproject.org/tech/languages/nodejs/nodejs.html
 
+https://tecadmin.net/install-yarn-centos/
+https://developer.fedoraproject.org/tech/languages/nodejs/nodejs.html
+https://learning.mihune-web.com/nodejs_install/
 
+
+
+- [Nuxt.js の起動時に外部アクセス可能なIPを指定する]( https://blog.mintsu-dev.com/posts/2020-08-04-virtualbox-nuxt/ )
 
 
 
