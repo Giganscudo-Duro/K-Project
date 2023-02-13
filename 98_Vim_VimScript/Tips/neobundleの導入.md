@@ -1,7 +1,4 @@
 
-
-
-
 # Dein
 https://kaworu.jpn.org/vim/Vim%E3%81%A8NeoVim%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3Dein.vim
 
