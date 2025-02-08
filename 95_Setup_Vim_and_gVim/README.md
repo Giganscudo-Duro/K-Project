@@ -8,12 +8,12 @@ https://github.com/Shougo/dein-installer.vim
 
 ## Linux 環境の場合
 
-1. **`必要なパッケージをインストール`**
+1. **`必要なパッケージをインストール`**  
     関連パッケージを前もってインストールする
     ```sh
     sudo yum install vim gvim git make gcc
     ``` 
-2. **`インストールスクリプトを実行`**
+2. **`インストールスクリプトを実行`**  
     インストールスクリプトをインターネット経由で取得し、実行する
     ```sh
     # 設定を確認されるが、以下の内容でよいかと…
@@ -21,8 +21,8 @@ https://github.com/Shougo/dein-installer.vim
     # Select your editor config location ----------> 1 vim path (~/.vimrc)
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein-installer.vim/master/installer.sh)"
     ``` 
-3. **`.vimrc ファイルを編集`**
-    vimrc ファイルに dein 関連の記述が追加されているので、以下のように編集する
+3. **`.vimrc ファイルを編集`**  
+    vimrc ファイルに dein 関連の記述が追加されているので、以下のように編集する  
     vim の次回起動時、記述したプラグインが導入される。
     ```diff
       ...(snip)...
